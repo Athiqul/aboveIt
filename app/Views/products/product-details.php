@@ -15,7 +15,7 @@
     <?= $this->section('title') ?>Above IT | Web App & Software Solution<?= $this->endSection() ?>
 
     <?= $this->section('meta') ?>
-<meta name="description" content="<?=$details->msg->meta_tag?>">
+<meta name="description" content="<?=$details->msg->meta_desc?>">
 <meta name="keywords" content="<?=$details->msg->meta_tag?>">
 <meta name="author" content="Above IT">
 <?= $this->endSection() ?>

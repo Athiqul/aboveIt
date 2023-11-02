@@ -12,12 +12,13 @@
   
     <?= $this->endSection() ?>
 
-    <?= $this->section('title') ?>Above IT | Web App & Software Solution<?= $this->endSection() ?>
+    <?= $this->section('title') ?>Above IT | Web App & Software Solution <?= $this->endSection() ?>
 
     <?= $this->section('meta') ?>
-<meta name="description" content="<?=$details->msg->meta_tag?>">
+<meta name="description" content="<?=$details->msg->meta_desc?>">
 <meta name="keywords" content="<?=$details->msg->meta_tag?>">
 <meta name="author" content="Above IT">
+<meta name="subtitle" content="<?=$details->msg->sub_title??''?>">
 <?= $this->endSection() ?>
     <!--[if lt IE 9
       ]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script

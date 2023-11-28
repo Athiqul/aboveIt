@@ -52,6 +52,9 @@ $routes->group('blogs',function($routes){
 
 $routes->get('/contest', 'Contest::index');
 $routes->post('/contest', 'Contest::index');
+$routes->get('/search', 'Search::index');
+$routes->get('/search-api', 'SearchApi::index');
+
 
 /*
  * --------------------------------------------------------------------

@@ -65,7 +65,7 @@
                   <a href="<?=site_url('/services/'.$item->id.'?'.$item->title)?>"  ><?=$item->title?></a>
                 </h5>
                 <div style="width: 100%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;" class="text">
-                    <?=$item->desc?>
+                    <?=esc(strip_tags($item->desc))?>
                   </div>
                 <a href="<?=site_url('/services/'.$item->id.'?'.$item->title)?>" class="read-more"
                   ><i class="fa fa-long-arrow-alt-right"></i> Read more</a

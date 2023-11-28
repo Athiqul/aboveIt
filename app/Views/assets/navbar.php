@@ -133,11 +133,11 @@
           </button>
 
           <div class="search-inner">
-            <form method="post" action="blog-showcase.html">
+            <form method="get" action="<?=site_url('/search')?>">
               <div class="form-group">
                 <input
                   type="search"
-                  name="search-field"
+                  name="keyword"
                   value=""
                   placeholder="Search..."
                   required=""

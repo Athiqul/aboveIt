@@ -6,7 +6,7 @@
 <meta name="author" content="Above IT">
 <?= $this->endSection() ?>
    
-<?= $this->section('title') ?>Above IT | Web App & Software Solution<?= $this->endSection() ?>
+<?= $this->section('title') ?>Are you looking for <?=$search?> | Web App & Software Solution<?= $this->endSection() ?>
     <!-- Stylesheets -->
     
 
@@ -45,7 +45,7 @@
       <!-- end main-content -->
       
       <!-- Services Section -->
-      <?php if($products->errors==false):?>
+     
         <section class="featured-products">
         <span class="bg-shape"></span>
        
@@ -68,34 +68,10 @@
 
 
             </div>
-            <div class="row">
-            <ul class="pagination">
-              <?php 
-              $current=$products->currentPage;
-              ?>
-              <li class="page__btn">
-                <a href="<?=site_url('/products?page=1')?>">
-                <i class="fa-solid fa-angles-left"></i>
-                </a>
-               
-              </li>
-              <?php for($i=1;$i<=$products->totalPage;$i++):?>
-              <li class="page__numbers <?=($i==$current)?'text-danger':''?>"><a class="<?=($i==$current)?'text-danger':''?>" href="<?=site_url('/products?page=').$i?>"><?=$i?></a></li>
-              <?php endfor?>
-             
-              
-              <li class="page__btn">
-               <a href="<?=site_url('/products?page=').$products->totalPage?>">
-
-               <i class="fa-solid fa-angles-right"></i>
-               </a> 
-              </li>
-            </ul>
-          </div>
           </div>
         </div>
       </section>
-      <?php endif?>
+   
       <!-- End Services Section-->
 <?=$this->endSection()?>
     
@@ -125,6 +101,16 @@
            if(item.type=='products')
            {
              html+=productCard(item);
+           }
+
+           if(item.type=='services')
+           {
+            html+=serviceCard(item);
+           }
+
+           if(item.type=='blog')
+           {
+             html+=blogCard(item);
            }
        });
 
@@ -178,14 +164,54 @@ function serviceCard(item)
                   <i class="icon flaticon-repair"></i>
                 </div>
                 <h5 class="title" style="width: 100%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
-                  <a href="/services/${item.id}?${item.title}"  ><?=$item->title?></a>
+                  <a href="/services/${item.id}?${item.title}"  >${item.title}</a>
                 </h5>
                 <div style="width: 100%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;" class="text">
-                    <?=esc(strip_tags($item->desc))?>
+                   ${removeHtmlTags(item.desc)}
                   </div>
-                <a href="<?=site_url('/services/'.$item->id.'?'.$item->title)?>" class="read-more"
+                <a href="/services/${item.id}?${item.title}" class="read-more"
                   ><i class="fa fa-long-arrow-alt-right"></i> Read more</a
                 >
+              </div>
+            </div>`;
+}
+
+
+function removeHtmlTags(htmlString) {
+  var doc = new DOMParser().parseFromString(htmlString, 'text/html');
+  return doc.body.textContent || "";
+}
+
+
+//Return Blog
+function blogCard(item)
+{
+  return ` <div class="news-block col-xl-4 col-lg-6 col-md-6">
+              <div class="inner-box">
+                <div class="image-box">
+                  <figure class="image">
+                    <a href="/blogs/${item.id}?blog=${item.title}"
+                      ><img src="https://go.abovebd.com/admin/blog-image/${item.image}" alt="${item.title}"
+                    /></a>
+                  </figure>
+                </div>
+                <div class="content-box">
+                  <span class="date">${item.publish_at}</span>
+                  <span class="post-info"
+                    ><i class="fa fa-user-circle"></i> by ${item.user_name}</span
+                  >
+                  <h5 class="title" style="width: 100%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;">
+                  <a href="/blogs/${item.id}?blog=${item.title}"
+                      >${item.title}</a
+                    >
+                  </h5>
+                  <div class="text" style="width: 100%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                  ${item.title}
+                  </div>
+                  <a href="/blogs/${item.id}?blog=${item.title}" class="read-more"
+                    ><i class="fa fa-long-arrow-alt-right"></i> Read More</a
+                  >
+                </div>
               </div>
             </div>`;
 }
